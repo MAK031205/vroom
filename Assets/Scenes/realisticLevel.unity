@@ -35033,8 +35033,8 @@ MonoBehaviour:
   steerAssist: 0.9
   minCorneringSpeed: 18
   corneringBrakeFactor: 0.5
-  rearDriftStiffness: 0.635
-  normalRearStiffness: 0.635
+  rearDriftStiffness: 0.6375
+  normalRearStiffness: 0.8
   driftTorqueBoost: 1.4
   driftSteerAssist: 1.2
   driftSlipThreshold: 6
