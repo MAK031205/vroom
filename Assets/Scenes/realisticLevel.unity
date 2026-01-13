@@ -3360,7 +3360,7 @@ MonoBehaviour:
     maxTorque: 6
     steerAngle: 30
     downPull: 50
-    rearDriftStiffness: 0.5
+    rearDriftStiffness: 0.635
     steerAssist: 0.9
     driftSteerAssist: 1.2
   gripPreset:
