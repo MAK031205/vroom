@@ -95,8 +95,8 @@ public class carController1 : MonoBehaviour
 
     private void updateSpeedometerColor()
     {
-        float realSpeed = rb.linearVelocity.magnitude * 3.6f *1.5f;
-        float speedMultiplier = Mathf.Lerp(1.0f,1.25f,Mathf.InverseLerp(20f,120f,realSpeed));
+        float realSpeed = rb.linearVelocity.magnitude * 3.6f ;
+        float speedMultiplier = Mathf.Lerp(1.0f,1.5f,Mathf.InverseLerp(20f,120f,realSpeed));
         float displaySpeed = realSpeed * speedMultiplier;
         speedText.text = displaySpeed.ToString("0") + " km/h";
         speedText.color = GetSpeedColor(displaySpeed);
@@ -104,19 +104,19 @@ public class carController1 : MonoBehaviour
 
     Color GetSpeedColor(float speed)
     {
-        if (speed <= 40f)
+        if (speed <= 30f)
         {
-            float t = Mathf.InverseLerp(0f, 40f, speed);
+            float t = Mathf.InverseLerp(0f, 30f, speed);
             return Color.Lerp(Color.white, Color.green, t);
         }
 
-        if (speed <= 80f)
+        if (speed <= 60f)
         {
-            float t = Mathf.InverseLerp(40f, 80f, speed);
+            float t = Mathf.InverseLerp(30f, 60f, speed);
             return Color.Lerp(Color.green, Color.yellow, t);
         }
 
-        float highSpeedT = Mathf.InverseLerp(80f, 120f, speed);
+        float highSpeedT = Mathf.InverseLerp(60f, 110f, speed);
         return Color.Lerp(Color.yellow, Color.red, highSpeedT);
     }
     void FixedUpdate()
