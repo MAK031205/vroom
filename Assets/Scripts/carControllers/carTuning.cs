@@ -6,6 +6,7 @@ using TMPro;
 public class carTuning : MonoBehaviour
 {
     [SerializeField]carController1 car;
+    [SerializeField]raceManager raceManager;
     public Slider torqueSlider;
     public Slider maxTorqueSlider;
     public Slider steeringAngleSlider;
@@ -13,6 +14,7 @@ public class carTuning : MonoBehaviour
     public Slider rearDriftStiffnessSlider;
     public Slider driftSteerAssistSlider;
     public Slider steerAssistSlider;
+    public Slider lapNumberSlider;
     public TMP_Text torqueValueText;
     public TMP_Text maxTorqueValueText;
     public TMP_Text steeringAngleValueText;
@@ -20,6 +22,7 @@ public class carTuning : MonoBehaviour
     public TMP_Text rearDriftStiffnessValueText;
     public TMP_Text driftSteerAssistValueText;
     public TMP_Text steerAssistValueText;
+    public TMP_Text lapNumberValueText;
     
     [System.Serializable]
     public struct CarPreset
@@ -68,6 +71,8 @@ public class carTuning : MonoBehaviour
         driftSteerAssistValueText.text = car.driftSteerAssist.ToString("F2");
         car.steerAssist = steerAssistSlider.value;
         steerAssistValueText.text = car.steerAssist.ToString("F2");
+        raceManager.totalLaps = (int)lapNumberSlider.value;
+        lapNumberValueText.text = raceManager.totalLaps.ToString();
     }
     void ApplyPreset(CarPreset p)
     {

@@ -96,7 +96,7 @@ public class carController1 : MonoBehaviour
     private void updateSpeedometerColor()
     {
         float realSpeed = rb.linearVelocity.magnitude * 3.6f ;
-        float speedMultiplier = Mathf.Lerp(1.0f,1.5f,Mathf.InverseLerp(20f,120f,realSpeed));
+        float speedMultiplier = Mathf.Lerp(1.0f,1.5f,Mathf.InverseLerp(30f,120f,realSpeed));
         float displaySpeed = realSpeed * speedMultiplier;
         speedText.text = displaySpeed.ToString("0") + " km/h";
         speedText.color = GetSpeedColor(displaySpeed);

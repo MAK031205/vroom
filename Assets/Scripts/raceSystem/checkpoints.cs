@@ -6,6 +6,9 @@ public class checkpoints : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            raceManager.instance.checkpointReached(checkpointIndex);
+        }
     }
 }
