@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class carController1 : MonoBehaviour
 {
@@ -46,7 +47,6 @@ public class carController1 : MonoBehaviour
 
     [SerializeField] InputAction accel;
     [SerializeField] InputAction turn;
-    [SerializeField] InputAction respawn;
     [SerializeField] InputAction restart;
     [SerializeField] TMP_Text speedText;
 
@@ -55,12 +55,12 @@ public class carController1 : MonoBehaviour
     private float currentTorqueMultiplier = 1.0f;
 
     bool isDrifting;
+    private bool isStalled=false;
 
     void OnEnable()
     {
         accel.Enable();
         turn.Enable();
-        respawn.Enable();
         restart.Enable();
     }
 
@@ -80,10 +80,6 @@ public class carController1 : MonoBehaviour
 
     void Update()
     {
-        if (respawn.WasPressedThisFrame())
-        {
-            recoverCar();
-        }
         if (restart.WasPressedThisFrame())
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -251,6 +247,10 @@ public class carController1 : MonoBehaviour
     private void processTurning()
     {
         float turnInput = turn.ReadValue<float>();
+        if (isStalled)
+        {
+            turnInput = 0f;
+        }
         float steeringAngle = maxSteeringAngle * turnInput;
         Vector3 localVelocity = transform.InverseTransformDirection(rb.linearVelocity);
 
@@ -292,6 +292,13 @@ public class carController1 : MonoBehaviour
     }
     private void processAcceleration()
     {
+        if (isStalled)
+        {
+            wheelColliderLeftBack.motorTorque = 0;
+            wheelColliderRightBack.motorTorque = 0;
+            rb.linearDamping =1f;
+            return;
+        }
         float accelerationInput = accel.ReadValue<float>();
         float driftBoost = isDrifting ? driftTorqueBoost : 1f;
         float finalTorque = accelerationInput > 0
@@ -318,5 +325,17 @@ public class carController1 : MonoBehaviour
         {
             rb.linearDamping = 0;
         }
+    }
+    public void stallEngine(float duration)
+    {
+        if(isStalled) return;
+        isStalled = true;
+        Debug.Log("BONK!Engine Stalled for " + duration + " seconds.");
+        Invoke("recoverEngine", duration);
+    }
+    private void recoverEngine()
+    {
+        isStalled = false;
+        rb.linearDamping=0.05f;
     }
 }

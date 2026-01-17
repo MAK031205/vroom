@@ -3,6 +3,8 @@ using UnityEngine;
 public class checkpoints : MonoBehaviour
 {
     public int checkpointIndex;
+    public Transform respawnPoint;
+    [SerializeField] public bool disableRespawn;
 
     private void OnTriggerEnter(Collider other)
     {

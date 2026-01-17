@@ -1,13 +1,14 @@
-using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using NUnit.Framework;
+using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class raceManager : MonoBehaviour
 {
     public static raceManager instance;
-    
+    [SerializeField] carController1 playerCar;
+    [SerializeField] Transform startPoint;
     [SerializeField] checkpoints[] checkpointsArray;
     [SerializeField] int lastCheckedCheckpointIndex = -1;
     [SerializeField] int debugCheckedCheckpointIndex = -1;
@@ -17,6 +18,8 @@ public class raceManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI lapTimerText;
     [SerializeField] TextMeshProUGUI overallTimerText;
     [SerializeField] TextMeshProUGUI bestLapTimerText;
+    [SerializeField] TextMeshProUGUI raceFinishText;
+    [SerializeField] InputAction respawn;
     int currentLap = 1;
     bool raceFinished = false;
     bool raceStarted = false;
@@ -34,6 +37,10 @@ public class raceManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void OnEnable()
+    {
+        respawn.Enable();
+    }
     void Update()
     {
         if(raceStarted && !raceFinished)
@@ -41,6 +48,64 @@ public class raceManager : MonoBehaviour
             updateTimer();
         }
         updateUI();
+        if (respawn.WasPressedThisFrame())
+        {
+            respawnCar();
+        }
+    }
+    void respawnCar()
+        {
+            int respawnIndex = lastCheckedCheckpointIndex;
+            if(respawnIndex < 0)
+            {
+                respawnAtStart();
+                return;
+            }
+            while (respawnIndex>0 && checkpointsArray[respawnIndex].disableRespawn)
+            {
+                respawnIndex--;
+            }
+            respawnAtCheckpoint(respawnIndex);
+
+        }
+    void respawnAtStart()
+    {
+        Rigidbody rb = playerCar.GetComponent<Rigidbody>();
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        rb.position = startPoint.position;
+        rb.rotation = startPoint.rotation;
+
+        rb.rotation = Quaternion.LookRotation(startPoint.forward, Vector3.up);
+
+    }
+    void respawnAtCheckpoint(int index)
+    {
+        Transform point = checkpointsArray[index].respawnPoint;
+
+        Rigidbody rb = playerCar.GetComponent<Rigidbody>();
+
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        rb.position = point.position;
+        rb.rotation = point.rotation;
+
+        rb.rotation = Quaternion.LookRotation(-point.forward, Vector3.up);
+    }
+    IEnumerator FlashText(TextMeshProUGUI text)
+    {
+        while (raceFinished)
+        {
+            float alpha = Mathf.PingPong(Time.time * 2f, 1f);
+            Color c = text.color;
+            c.a = alpha;
+            text.color = c;
+            yield return null;
+        }
     }
     void startRace()
     {
@@ -55,6 +120,16 @@ public class raceManager : MonoBehaviour
     {
         raceFinished = true;
         raceStarted= false;
+        if (!raceFinishText.gameObject.activeSelf)
+        {
+            raceFinishText.gameObject.SetActive(true);
+            StartCoroutine(FlashText(raceFinishText));
+        }
+        Invoke("reloadScene", 5f);
+    }
+    void reloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     void onLapFinish()
     {
@@ -73,9 +148,11 @@ public class raceManager : MonoBehaviour
             lastCheckedCheckpointIndex = isCircuit ? -1: 0;
         }
     }
+
     public void checkpointReached(int checkpointIndex)
     {
         debugCheckedCheckpointIndex = checkpointIndex;
+        if (checkpointIndex == lastCheckedCheckpointIndex) return;
         if(raceFinished) return;
         if(!raceStarted && checkpointIndex !=0) return;
         if(checkpointIndex == lastCheckedCheckpointIndex + 1)
