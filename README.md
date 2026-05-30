@@ -6,7 +6,7 @@ Understeer was developed as an exploration of how vehicle setup, surface interac
 
 ## Project Status
 
-Current Status: Playable Prototype
+**Current Status:** Playable Prototype
 
 The project is currently focused on gameplay systems, vehicle handling, and player experimentation. Future iterations may expand AI systems, progression mechanics, additional tracks, and multiplayer functionality.
 
@@ -16,14 +16,13 @@ The project is currently focused on gameplay systems, vehicle handling, and play
 
 <img width="1023" height="640" alt="Untitleddesign-ezgif com-optimize" src="https://github.com/user-attachments/assets/db214ac6-760d-4817-8415-7d9dc0f39be7" />
 
-
 🎮 WebGL Build:
 https://mohdayaankhan.itch.io/understeer
 
 📥 Windows Build:
 https://mohdayaankhan.itch.io/understeer
 
-📹 Gameplay Showcase:
+📹 **Gameplay Showcase**
 https://youtu.be/aR0I97N1b1M
 
 ---
@@ -39,15 +38,14 @@ This project was developed independently, including:
 - Surface detection systems
 - Vehicle selection workflow
 - Testing, balancing, and deployment
+
 ---
 
 ## Screenshots
 
 <img width="1280" height="800" alt="Screenshot 2026-05-24 171359" src="https://github.com/user-attachments/assets/14e3cb50-8de0-40b1-b85a-5bf1c24cb08b" />
-<img width="1280" height="800" alt="Screenshot 2026-05-24 171334" src="https://github.com/user-attachments/assets/1bc7aef9-fe0e-4fc1-bec8-27127b7af0a0" />
-<img width="632" height="356" alt="Screenshot 2026-05-24 162015" src="https://github.com/user-attachments/assets/b44538a7-eb04-4e82-b334-f5bf1c4e77b1" />
-<img width="1280" height="800" alt="Screenshot 2026-05-25 171550" src="https://github.com/user-attachments/assets/cdda51d3-7211-47d0-8cb9-666411dc20d4" />
-
+<img width="1023" height="640" alt="Untitleddesign4-ezgif com-optimize" src="https://github.com/user-attachments/assets/3dcb8542-99de-43bd-8adb-f04d474f830b" />
+<img width="1024" height="640" alt="Untitled design (5)" src="https://github.com/user-attachments/assets/8bd298fa-9bd7-445a-a640-7270ea4a0cbe" />
 
 ---
 
@@ -207,7 +205,7 @@ Through this project I gained experience with:
 
 ## Future Improvements
 
-Potential future additions include:
+Planned future improvements:
 
 - AI Opponents
 - Multiplayer Support
