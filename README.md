@@ -4,9 +4,18 @@ A gameplay-focused Unity racing prototype built around vehicle handling, tuning 
 
 Understeer was developed as an exploration of how vehicle setup, surface interaction, and player choice influence driving behaviour. Instead of relying on a single optimal strategy, the project encourages experimentation through multiple vehicle types and real-time tuning options.
 
+## Project Status
+
+Current Status: Playable Prototype
+
+The project is currently focused on gameplay systems, vehicle handling, and player experimentation. Future iterations may expand AI systems, progression mechanics, additional tracks, and multiplayer functionality.
+
 ---
 
 ## Play the Game
+
+<img width="1023" height="640" alt="Untitleddesign-ezgif com-optimize" src="https://github.com/user-attachments/assets/db214ac6-760d-4817-8415-7d9dc0f39be7" />
+
 
 🎮 WebGL Build:
 https://mohdayaankhan.itch.io/understeer
@@ -15,8 +24,21 @@ https://mohdayaankhan.itch.io/understeer
 https://mohdayaankhan.itch.io/understeer
 
 📹 Gameplay Showcase:
-[https://youtu.be/aR0I97N1b1M](url)
+https://youtu.be/aR0I97N1b1M
 
+---
+## My Contribution
+
+This project was developed independently, including:
+
+- Gameplay programming
+- Vehicle handling systems
+- Runtime tuning systems
+- UI implementation
+- Lap validation logic
+- Surface detection systems
+- Vehicle selection workflow
+- Testing, balancing, and deployment
 ---
 
 ## Screenshots
@@ -157,13 +179,27 @@ Allowing players to adjust gameplay parameters during runtime required careful s
 Creating noticeable differences between surfaces while maintaining a predictable driving experience required balancing multiple handling variables.
 
 ---
+## Key Takeaways
+
+Through this project I gained experience with:
+
+- Gameplay systems architecture
+- Physics-based vehicle handling
+- Runtime parameter tuning
+- UI-to-gameplay communication
+- Checkpoint validation logic
+- Iterative gameplay balancing
+- WebGL deployment workflows
+
+---
 
 ## Tech Stack
 
 - Unity 6.3 LTS
 - C#
-- Unity PhysX
-- URP
+- Unity PhysX Vehicle Systems
+- Universal Render Pipeline (URP)
+- TextMeshPro
 - Git
 - GitHub
 
@@ -195,6 +231,5 @@ https://mohdayaankhan.itch.io/understeer
 ArtStation:
 https://mak031205.artstation.com
 
-<img width="1023" height="640" alt="Untitleddesign-ezgif com-optimize" src="https://github.com/user-attachments/assets/db214ac6-760d-4817-8415-7d9dc0f39be7" />
 
 
